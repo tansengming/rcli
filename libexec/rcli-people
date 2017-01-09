@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# Usage: rcli who
+# Summary: Check who's logged in
+# Help: This will print out when you run `sub help who`.
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+# And maybe start off another one?
+
+module Rcli
+  class People
+    def call
+      puts "Hello!"
+    end
+  end
+end
+
+Rcli::People.new.call if $0 == __FILE__
