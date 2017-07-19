@@ -1,0 +1,32 @@
+#! /usr/bin/env ruby
+# Usage: rcli profiles QUERY
+# Summary: Search for profiles on the RC directory based on QUERY
+# Help: Search for profiles on the RC directory based on QUERY
+#
+# Where QUERY will search by name, skills, profile questions. 
+# An empty QUERY will cause results to be returned alphabetically 
+# by last name. E.g.
+# 
+#    rcli profiles 'sengming'
+#
+# Searches name, skills and profile questions for mention of 'sengming'
+
+require 'uri'
+require 'cgi'
+require 'open-uri'
+require 'json'
+require File.dirname(__FILE__) + "/../lib/rcli"  
+# require 'irb' # debug with binding.irb
+
+HOST        = 'https://www.recurse.com'
+ENDPOINT    = '/api/v1/profiles'
+QUERY       = CGI.escape(ARGV.join(' '))
+PROFILE_URI = URI.parse("#{HOST}#{ENDPOINT}?query=#{QUERY}")
+
+token     = RCLI::LocalToken.call || raise('Missing personal token! Please run `rcli login` to get a personal token')
+response  = PROFILE_URI.open("Authorization" => "Bearer #{token}").read
+profiles  = JSON.parse(response)
+
+puts profiles
+      .map{|profile| RCLI::ProfileFormatter.(profile) }
+      .join("---\n")
