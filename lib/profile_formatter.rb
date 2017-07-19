@@ -53,8 +53,8 @@ class ProfileFormatter
   def format_title(key)
     key
       .tr('_', ' ')
-      .gsub(/\s+(truncated|hl|path)/, '')  # cleanup title
-      .gsub(/ rc/i, ' RC')                 # ditto
-      .gsub(/\w+/){|w| w.capitalize}       # title case
+      .gsub(/\w+/){|w| w.capitalize}        # title case
+      .gsub(/ rc/i, ' RC')                  # cleanup title
+      .gsub(/\s+(truncated|hl|path)/i, '')  # ditto
   end
 end
