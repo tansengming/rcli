@@ -29,4 +29,4 @@ profiles  = JSON.parse(response)
 
 puts profiles
       .map{|profile| RCLI::ProfileFormatter.(profile) }
-      .join("---\n")
+      .join("\n---\n")
