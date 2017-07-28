@@ -2,7 +2,7 @@
 
 You will need to have `ruby` in your `PATH` for `rcli` to work.
 
-Once you have that out of your way, here's one way you could install `rcli` in your `$HOME` directory:
+Once you have that out of the way, here's one way you could install `rcli` in your `$HOME` directory:
 
     cd
     git clone https://github.com/tansengming/rcli.git .rcli
