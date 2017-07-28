@@ -23,7 +23,7 @@ ENDPOINT    = '/api/v1/profiles'
 QUERY       = CGI.escape(ARGV.join(' '))
 PROFILE_URI = URI.parse("#{HOST}#{ENDPOINT}?query=#{QUERY}")
 
-token     = RCLI::LocalToken.call || raise('Missing personal token! Please run `rcli login` to get a personal token')
+token     = RCLI::Config.get(:token) || raise('Missing personal token! Please run `rcli login` to get a personal token')
 response  = PROFILE_URI.open("Authorization" => "Bearer #{token}").read
 profiles  = JSON.parse(response)
 
