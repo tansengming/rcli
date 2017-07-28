@@ -1,0 +1,28 @@
+#! /usr/bin/env ruby
+# Usage: rcli tokens
+# Summary: Creates a personal access token and saves it to ~/.rclirc
+# Help: Creates a personal access token and saves it to ~/.rclirc
+
+require File.dirname(__FILE__) + "/../lib/rcli"  
+
+
+RCLI::Config.get(:token) && raise('Looks like you already have a token! To get a new one please remove ~/rclirc.')
+
+HOST        = 'https://www.recurse.com'
+ENDPOINT    = '/api/v1/tokens'
+TOKENS_URI  = URI.parse("#{HOST}#{ENDPOINT}")
+
+puts "Please type you email address followed by the Enter key"
+email = gets.chomp
+puts "Please type you password followed by Enter key"
+password = gets.chomp
+
+req             = Net::HTTP::Post.new(TOKENS_URI)
+req.basic_auth    email, password
+req.body        = 'description=rcli'
+response        = Net::HTTP.start(TOKENS_URI.hostname, TOKENS_URI.port, use_ssl: true) {|http| http.request(req) }
+token           = JSON.parse(response.body)["token"]
+
+puts "Saving #{token} to ~/.rclirc ..."
+
+RCLI::Config.save(:token, token)

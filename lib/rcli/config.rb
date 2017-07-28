@@ -9,5 +9,9 @@ module RCLI
         return $1 if line[/#{key.to_s}:(\w+)/]
       end
     end
+
+    def self.save(key, value)
+      PATH.open('w'){|f| f.puts "#{key}:#{value}" }
+    end
   end
 end
