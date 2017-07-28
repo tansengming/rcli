@@ -12,7 +12,7 @@ For bash users:
 
 For zsh users:
 
-    echo 'eval "$($HOME/.rcli/bin/sub init -)"' >> ~/.zshenv
+    echo 'eval "$($HOME/.rcli/bin/rcli init -)"' >> ~/.zshenv
     source ~/.zshenv
 
 You could also install your sub in a different directory, say `/usr/local`. This is just one way you could provide a way to install your sub.
