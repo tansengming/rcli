@@ -17,7 +17,7 @@ For zsh users:
     echo 'eval "$($HOME/.rcli/bin/rcli init -)"' >> ~/.zshenv
     source ~/.zshenv
 
-You could also install your sub in a different directory, say `/usr/local`. This is just one way you could provide a way to install your sub.
+You could also install `rcli` in a different directory, say `/usr/local`.
 
 ## Usage
 
@@ -46,6 +46,14 @@ by last name. E.g.
    rcli profiles 'sengming'
 
 Searches name, skills and profile questions for mention of 'sengming'
+```
+
+### rcli help
+
+```bash
+Usage: rcli help <command>
+
+See 'rcli help <command>' for information on a specific command.
 ```
 
 ## Updates
