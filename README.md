@@ -1,6 +1,8 @@
 ## Installation
 
-Here's one way you could install your sub in your `$HOME` directory:
+You will need the `ruby` command to be in you `PATH` for `rcli` to work.
+
+Once you have that out of your way, here's one way you could install `rcli` in your `$HOME` directory:
 
     cd
     git clone https://github.com/tansengming/rcli.git .rcli
@@ -16,6 +18,35 @@ For zsh users:
     source ~/.zshenv
 
 You could also install your sub in a different directory, say `/usr/local`. This is just one way you could provide a way to install your sub.
+
+## Usage
+
+`rcli` comes with a few commands and you'll probably want to get started with `rcli login` to generate a [Personal Access Token](https://github.com/recursecenter/wiki/wiki/Recurse-Center-API#personal-access-tokens).
+
+### rcli login
+
+```bash
+Usage: rcli login
+
+Creates a personal access token and saves it to ~/.rclirc
+```
+
+
+### rcli profiles
+
+```bash
+Usage: rcli profiles QUERY
+
+Search for profiles on the RC directory based on QUERY
+
+Where QUERY will search by name, skills, profile questions. 
+An empty QUERY will cause results to be returned alphabetically 
+by last name. E.g.
+
+   rcli profiles 'sengming'
+
+Searches name, skills and profile questions for mention of 'sengming'
+```
 
 ## Updates
 
