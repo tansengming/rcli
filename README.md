@@ -16,3 +16,10 @@ For zsh users:
     source ~/.zshenv
 
 You could also install your sub in a different directory, say `/usr/local`. This is just one way you could provide a way to install your sub.
+
+## Updates
+
+If you've cloned the repository to `~/.rcli` you can get the latest updates with:
+
+    cd ~/.rcli
+    git pull
