@@ -9,7 +9,7 @@ Once you have that out of the way, here's one way you could install `rcli` in yo
 
 For bash users:
 
-    echo 'eval "$($HOME/.rcli/bin/sub init -)"' >> ~/.bash_profile
+    echo 'eval "$($HOME/.rcli/bin/rcli init -)"' >> ~/.bash_profile
     exec bash
 
 For zsh users:
