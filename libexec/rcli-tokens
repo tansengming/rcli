@@ -6,7 +6,7 @@
 require File.dirname(__FILE__) + "/../lib/rcli"  
 
 
-RCLI::Config.get(:token) && raise('Looks like you already have a token! To get a new one please remove ~/rclirc.')
+RCLI::Config.get(:token) && raise('Looks like you already have a token! Please remove ~/rclirc to continue.')
 
 HOST        = 'https://www.recurse.com'
 ENDPOINT    = '/api/v1/tokens'
