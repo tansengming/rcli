@@ -15,7 +15,7 @@ TOKENS_URI  = URI.parse("#{HOST}#{ENDPOINT}")
 puts "Please type you email address followed by the Enter key"
 email = gets.chomp
 puts "Please type you password followed by Enter key"
-password = gets.chomp
+password = STDIN.noecho(&:gets).chomp
 
 req             = Net::HTTP::Post.new(TOKENS_URI)
 req.basic_auth    email, password
@@ -23,6 +23,7 @@ req.body        = 'description=rcli'
 response        = Net::HTTP.start(TOKENS_URI.hostname, TOKENS_URI.port, use_ssl: true) {|http| http.request(req) }
 token           = JSON.parse(response.body)["token"]
 
-puts "Saving #{token} to ~/.rclirc ..."
+raise "\nLooks like you have the wrong password please try again!" if JSON.parse(response.body)['message'] == 'not_found'
 
+puts "Saving your personal token to ~/.rclirc ..."
 RCLI::Config.save(:token, token)
