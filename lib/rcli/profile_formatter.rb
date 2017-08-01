@@ -25,9 +25,9 @@ module RCLI
       employer_info_rendered
       employer_info_hl
       employer_info_match
-      current_location # temporarily disabled
-      stints # temporarily disabled
-      company # temporarily disabled
+      current_location
+      company
+      stints
     }
 
     def self.call(profile_hash)
@@ -40,6 +40,7 @@ module RCLI
     end
 
     def call
+      profile_hash['batches'] = profile_hash['stints'].map{|hash| hash['batch']['name']}.join(', ')
       profile_hash
         .reject{|_, v| v.nil? }                             # ignore nil values
         .reject{|_, v| v.respond_to?(:empty?) && v.empty? } # ignore empty values
