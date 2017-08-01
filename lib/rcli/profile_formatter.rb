@@ -40,7 +40,7 @@ module RCLI
     end
 
     def call
-      profile_hash['batches'] = profile_hash['stints'].map{|hash| hash['batch']['name']}.join(', ')
+      profile_hash['batches'] = profile_hash['stints'].map{|hash| hash['batch']}.flatten.compact.map{|hash| hash['name']}
       profile_hash
         .reject{|_, v| v.nil? }                             # ignore nil values
         .reject{|_, v| v.respond_to?(:empty?) && v.empty? } # ignore empty values
