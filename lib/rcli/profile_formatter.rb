@@ -40,17 +40,16 @@ module RCLI
     end
 
     def call
-      non_empty_values_without_ignored_keys.map{|k, v| [format_title(k), v].join(': ')}.join("\n")
+      profile_hash
+        .reject{|_, v| v.nil? }                             # ignore nil values
+        .reject{|_, v| v.respond_to?(:empty?) && v.empty? } # ignore empty values
+        .reject{|k, _| IGNORED_KEYS.include? k }            # ignore some keys
+        .reject{|k, v| k == 'image_path' && v[/no_photo_/]} # ignore images with no photo
+        .map{|k, v| [format_title(k), v].join(': ')}
+        .join("\n")
     end
 
     private
-    def non_empty_values_without_ignored_keys
-      @non_empty_values ||= profile_hash
-        .reject{|_, v| v.nil? }
-        .reject{|_, v| v.respond_to?(:empty?) && v.empty? }
-        .reject{|k, _| IGNORED_KEYS.include? k }
-    end
-
     def format_title(key)
       key
         .tr('_', ' ')
